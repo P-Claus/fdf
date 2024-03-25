@@ -6,12 +6,15 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 10:06:18 by pclaus            #+#    #+#             */
-/*   Updated: 2024/03/25 10:07:42 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/03/25 11:27:53 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../libft/includes/libft.h"
 #include "../mlx_linux/mlx.h"
-#include <X11/keysym.h>#include <stdlib.h>
+#include <X11/keysym.h>
+#include <fcntl.h>
+#include <stdlib.h>
 
 #define WIDTH 800
 #define HEIGHT 800
@@ -31,3 +34,5 @@ typedef struct s_mlx_data
 	void	*win_ptr;
 	t_img	img;
 }			t_mlx_data;
+
+/*	UTILS	*/
