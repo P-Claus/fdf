@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 10:06:18 by pclaus            #+#    #+#             */
-/*   Updated: 2024/03/25 11:27:53 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/03/26 14:30:42 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 typedef struct s_img
 {
 	void	*img_ptr;
-	char	*img_pixels_ptr;
+	char	*address;
 	int		bits_per_pixel;
 	int		endian;
 	int		line_len;

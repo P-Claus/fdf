@@ -41,7 +41,7 @@ YELLOW			= \033[0;33m
 BLUE			= \033[0;34m
 MAGENTA			= \033[0;35m
 CYAN			= \033[0;36m
-RESET			= \033[0m
+RESET_COLOR		= \033[0m
 MOVEUP			= \033[F
 RESET			= \e[2K\r
 
@@ -59,7 +59,7 @@ $(MINILIBX):
 
 $(NAME): $(LIBFT) $(MINILIBX) $(OBJ) 
 	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(LIBFT) -Lmlx_linux -lmlx_Linux -lXext -lX11
-	@echo "$(RESET)$(GREEN)Compiled $(NAME)"
+	@echo "$(RESET)$(GREEN)Compiled $(NAME)$(RESET_COLOR)"
 
 $(OBJ_DIR)/%.o: $(SOURCES_DIR)/%.c
 	@$(MKDIR) $(OBJ_DIR)
@@ -71,14 +71,14 @@ clean:
 	@make clean -s -C $(LIBFT_DIR)
 	@make clean -s -C $(MINILIBX_DIR)
 	@$(RM) $(OBJ_DIR)
-	@echo "$(GREEN)Removed the object files from fdf"
+	@echo "$(GREEN)Removed the object files from fdf$(RESET_COLOR)"
 
 fclean:
 	@make fclean -s -C $(LIBFT_DIR)
 	@make clean -s -C $(MINILIBX_DIR)
 	@$(RM) $(OBJ_DIR)
 	@$(RM) $(NAME)
-	@echo "$(GREEN)Removed $(NAME) and the object files"
+	@echo "$(GREEN)Removed $(NAME) and the object files$(RESET_COLOR)"
 
 re:
 	@make fclean
