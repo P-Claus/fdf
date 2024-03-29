@@ -81,7 +81,7 @@ fclean:
 	@echo "$(GREEN)Removed $(NAME) and the object files$(RESET_COLOR)"
 
 re:
-	@make fclean
-	@make
+	@make -s fclean
+	@make -s
 
 .PHONY:			all clean fclean re 

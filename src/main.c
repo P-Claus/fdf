@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 10:05:51 by pclaus            #+#    #+#             */
-/*   Updated: 2024/03/28 15:19:10 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/03/29 16:04:16 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 
 int	main(int argc, char **argv)
 {
-	const char	*filename;
-	const char	*include_path;
-	int			fd;
-	char		*result;
-	char		*first_line;
-	int			amount_of_rows;
-	int			amount_of_columns;
+	char	*filename;
+	char	*include_path;
+	int		fd;
+	char	*result;
+	char	*first_line;
+	int		amount_of_rows;
+	int		amount_of_columns;
 
 	// int fd;
 	amount_of_rows = 0;
@@ -29,13 +29,13 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		include_path = "./maps/";
-		filename = ft_strjoin(include_path, (const char *)argv[1]);
+		filename = ft_strjoin(include_path, argv[1]);
 		fd = open(filename, O_RDONLY);
-		result = get_next_line(fd, 0, 0);
+		result = get_next_line(fd);
 		first_line = result;
 		while (!result == 0)
 		{
-			result = get_next_line(fd, 0, 0);
+			result = get_next_line(fd);
 			amount_of_rows++;
 			free(result);
 		}
