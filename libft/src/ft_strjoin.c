@@ -3,44 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pclaus <pclaus@student.s19.be>             +#+  +:+       +#+        */
+/*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 15:39:47 by pclaus            #+#    #+#             */
-/*   Updated: 2023/11/07 15:41:04 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/03/29 15:44:01 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-static int	calculate_length(const char *s)
+char	*ft_strjoin(char *dst, char *src)
 {
-	int	len;
+	size_t	i;
+	size_t	j;
+	char	*str;
 
-	len = 0;
-	while (s[len] != '\0')
-		len++;
-	return (len);
-}
-
-char	*ft_strjoin(char const *s1, char const *s2)
-{
-	int		total_length;
-	int		index;
-	int		index_s1;
-	int		index_s2;
-	char	*new_string;
-
-	index = 0;
-	index_s1 = 0;
-	index_s2 = 0;
-	total_length = calculate_length(s1) + calculate_length(s2);
-	new_string = (char *) malloc((total_length + 1) * sizeof(char));
-	if (new_string == NULL)
+	if (!dst)
+	{
+		dst = (char *)malloc(1 * sizeof(char));
+		dst[0] = '\0';
+	}
+	if (!dst || !src)
 		return (NULL);
-	while (s1[index_s1] != '\0')
-		new_string[index++] = s1[index_s1++];
-	while (s2[index_s2] != '\0')
-		new_string[index++] = s2[index_s2++];
-	new_string[index++] = '\0';
-	return (new_string);
+	str = malloc(sizeof(char) * ((ft_strlen(dst) + ft_strlen(src)) + 1));
+	if (str == NULL)
+		return (NULL);
+	i = -1;
+	j = 0;
+	if (dst)
+		while (dst[++i] != '\0')
+			str[i] = dst[i];
+	while (src[j] != '\0')
+		str[i++] = src[j++];
+	str[ft_strlen(dst) + ft_strlen(src)] = '\0';
+	free(dst);
+	return (str);
 }

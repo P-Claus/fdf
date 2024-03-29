@@ -49,7 +49,7 @@ RESET			= \e[2K\r
 
 all: $(NAME)
 
-$(NAME): $(OBJ) $(PRINTF_OBJ) $(GNL_OBJ)
+$(NAME): $(OBJ) $(PRINTF_OBJ) $(GNL_OBJ) $(INCLUDES)
 	@ar rcs $(NAME) $(OBJ) $(PRINTF_OBJ) $(GNL_OBJ)
 	@echo "$(RESET)$(GREEN)Libft has been created!"
 
@@ -73,16 +73,16 @@ $(OBJ_DIR)/%.o: $(GNL_SRC_DIR)/%.c
 
 
 clean:
-	@$(RM) $(OBJ_DIR)
+	@$(RM) $(OBJ_DIR) > /dev/null 2>&1
 	@echo "$(GREEN)The object files from libft have been removed!"
 
 fclean: 
-	@$(RM) $(OBJ_DIR)
-	@$(RM) $(NAME)
+	@$(RM) $(OBJ_DIR) > /dev/null 2>&1
+	@$(RM) $(NAME) > /dev/null 2>&1
 	@echo "$(GREEN)The object files from libft and the library have been removed!"
 
 re:
-	@make fclean
-	@make
+	@make -s fclean
+	@make -s
 
 .PHONY:			all clean fclean re 
