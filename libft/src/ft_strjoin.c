@@ -6,36 +6,31 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 15:39:47 by pclaus            #+#    #+#             */
-/*   Updated: 2024/03/29 15:44:01 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/03/29 16:35:10 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-char	*ft_strjoin(char *dst, char *src)
+char	*ft_strjoin(char const *dst, char const *src)
 {
-	size_t	i;
-	size_t	j;
-	char	*str;
+	int		total_length;
+	int		index;
+	int		index_dst;
+	int		index_src;
+	char	*new_string;
 
-	if (!dst)
-	{
-		dst = (char *)malloc(1 * sizeof(char));
-		dst[0] = '\0';
-	}
-	if (!dst || !src)
+	index = 0;
+	index_dst = 0;
+	index_src = 0;
+	total_length = ft_strlen(dst) + ft_strlen(src);
+	new_string = (char *)malloc((total_length + 1) * sizeof(char));
+	if (new_string == NULL)
 		return (NULL);
-	str = malloc(sizeof(char) * ((ft_strlen(dst) + ft_strlen(src)) + 1));
-	if (str == NULL)
-		return (NULL);
-	i = -1;
-	j = 0;
-	if (dst)
-		while (dst[++i] != '\0')
-			str[i] = dst[i];
-	while (src[j] != '\0')
-		str[i++] = src[j++];
-	str[ft_strlen(dst) + ft_strlen(src)] = '\0';
-	free(dst);
-	return (str);
+	while (dst[index_dst] != '\0')
+		new_string[index++] = dst[index_dst++];
+	while (src[index_src] != '\0')
+		new_string[index++] = src[index_src++];
+	new_string[index++] = '\0';
+	return (new_string);
 }

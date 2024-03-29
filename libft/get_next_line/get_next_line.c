@@ -6,11 +6,39 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 17:16:30 by pclaus            #+#    #+#             */
-/*   Updated: 2024/03/29 15:50:45 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/03/29 17:00:05 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/get_next_line.h"
+
+static char	*gnl_ft_strjoin(char *dst, char *src)
+{
+	size_t	i;
+	size_t	j;
+	char	*str;
+
+	if (!dst)
+	{
+		dst = (char *)malloc(1 * sizeof(char));
+		dst[0] = '\0';
+	}
+	if (!dst || !src)
+		return (NULL);
+	str = malloc(sizeof(char) * ((ft_strlen(dst) + ft_strlen(src)) + 1));
+	if (str == NULL)
+		return (NULL);
+	i = -1;
+	j = 0;
+	if (dst)
+		while (dst[++i] != '\0')
+			str[i] = dst[i];
+	while (src[j] != '\0')
+		str[i++] = src[j++];
+	str[ft_strlen(dst) + ft_strlen(src)] = '\0';
+	free(dst);
+	return (str);
+}
 
 static char	*put_stash_in_line(char *stash)
 {
@@ -51,7 +79,7 @@ static char	*fill_stash(int fd, char *stash)
 			free(stash);
 			return (NULL);
 		}
-		stash = ft_strjoin(stash, buffer);
+		stash = gnl_ft_strjoin(stash, buffer);
 		free(buffer);
 	}
 	return (stash);
