@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 10:06:18 by pclaus            #+#    #+#             */
-/*   Updated: 2024/03/26 14:30:42 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/03/29 20:24:33 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,3 +36,6 @@ typedef struct s_mlx_data
 }			t_mlx_data;
 
 /*	UTILS	*/
+void		calculate_matrix(char *name_of_file);
+int			calculate_amount_of_columns(char *filename);
+int			calculate_amount_of_rows(char *filename);
