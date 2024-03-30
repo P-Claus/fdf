@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 17:52:53 by pclaus            #+#    #+#             */
-/*   Updated: 2024/03/30 11:00:42 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/03/30 21:16:59 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ void	fill_matrix(int amount_of_rows, int amount_of_columns, char *filename)
 	char	*result;
 	int		fd;
 	int		amount_of_columns_with_spaces;
+	int		number_index;
+	char	number[32];
 
 	amount_of_columns_with_spaces = calculate_amount_of_columns_with_spaces(filename)
 		- 1;
@@ -30,7 +32,7 @@ void	fill_matrix(int amount_of_rows, int amount_of_columns, char *filename)
 	while (row_iter <= amount_of_rows)
 	{
 		result = get_next_line(fd);
-		while (column_iter < amount_of_columns_with_spaces)
+		while (column_iter < amount_of_columns_with_spaces && result != NULL)
 		{
 			if (result[column_iter] == 32)
 			{
@@ -38,32 +40,27 @@ void	fill_matrix(int amount_of_rows, int amount_of_columns, char *filename)
 			}
 			else
 			{
-				ft_printf("%c", result[column_iter]);
-				matrix[row_iter][column_iter] = result[column_iter];
-				column_iter++;
+				number_index = 0;
+				while (result[column_iter] != ' '
+					&& result[column_iter] != '\0')
+				{
+					number[number_index++] = result[column_iter++];
+				}
+				number[number_index] = '\0';
+				matrix[row_iter][column_iter] = ft_atoi(number);
 			}
-		}
-		column_iter = 0;
-		row_iter++;
-		ft_printf("\n");
-		free(result);
-	}
-	(void)matrix;
-	/*
-	row_iter = 0;
-	column_iter = 0;
-	while (row_iter < amount_of_rows)
-	{
-		while (column_iter < amount_of_columns)
-		{
-			ft_printf("%c", matrix[row_iter][column_iter]);
 			column_iter++;
 		}
 		column_iter = 0;
-		ft_printf("\n");
 		row_iter++;
+		free(result);
 	}
-	*/
+	while (column_iter < amount_of_columns)
+	{
+		ft_printf("%d", matrix[1][column_iter]);
+		column_iter++;
+	}
+	ft_printf("\n");
 	close(fd);
 }
 
