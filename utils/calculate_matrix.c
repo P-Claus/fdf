@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 17:52:53 by pclaus            #+#    #+#             */
-/*   Updated: 2024/03/30 21:16:59 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/01 10:19:33 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,53 +15,140 @@
 // returns a pointer to the matrix once it has been allocated on the heap?
 void	fill_matrix(int amount_of_rows, int amount_of_columns, char *filename)
 {
-	int		matrix[amount_of_rows][amount_of_columns];
-	int		row_iter;
-	int		column_iter;
-	char	*result;
+	int		**matrix;
 	int		fd;
-	int		amount_of_columns_with_spaces;
-	int		number_index;
-	char	number[32];
+	char	*result;
+	char	**split1;
+	int		split_iter;
+	char	**split2;
+	char	**split3;
 
-	amount_of_columns_with_spaces = calculate_amount_of_columns_with_spaces(filename)
-		- 1;
-	row_iter = -1;
-	column_iter = 0;
+	matrix = allocate_matrix(amount_of_rows, amount_of_columns);
+	(void)amount_of_rows;
+	(void)amount_of_columns;
+	(void)matrix;
+	split_iter = 0;
+	// int		column_iter;
+	// int		amount_of_columns_with_spaces;
+	// int		number_index;
+	// char	number[32];
 	fd = open(filename, O_RDONLY);
-	while (row_iter <= amount_of_rows)
+	result = get_next_line(fd);
+	ft_printf("The result is: %s\n", result);
+	split1 = ft_split(result, ' ');
+	while (split1[split_iter])
 	{
-		result = get_next_line(fd);
-		while (column_iter < amount_of_columns_with_spaces && result != NULL)
+		ft_printf("The string is: %s\n", split1[split_iter]);
+		split_iter++;
+	}
+	free(result);
+	split_iter = 0;
+	while (split1[split_iter])
+	{
+		free(split1[split_iter]);
+		split_iter++;
+	}
+	free(split1);
+	split_iter = 0;
+	/////////
+	result = get_next_line(fd);
+	ft_printf("The result is: %s\n", result);
+	split2 = ft_split(result, ' ');
+	ft_printf("split2 is: %p\n", (void *)split2);
+	// while (split2[split_iter])
+	//{
+	// ft_printf("The string is: %s\n", split2[split_iter]);
+	// split_iter++;
+	//}
+	free(result);
+	split_iter = 0;
+	while (split2[split_iter])
+	{
+		free(split2[split_iter]);
+		split_iter++;
+	}
+	free(split2);
+	split_iter = 0;
+	/////////
+	result = get_next_line(fd);
+	ft_printf("The result is: %s\n", result);
+	split3 = ft_split(result, ' ');
+	while (split3[split_iter])
+	{
+		ft_printf("The string is: %s\n", split3[split_iter]);
+		split_iter++;
+	}
+	free(result);
+	split_iter = 0;
+	while (split3[split_iter])
+	{
+		free(split3[split_iter]);
+		split_iter++;
+	}
+	free(split3);
+	close(fd);
+	/*
+		amount_of_columns_with_spaces = calculate_amount_of_columns_with_spaces(filename)
+			- 1;
+		row_iter = -1;
+		column_iter = 0;
+		fd = open(filename, O_RDONLY);
+		while (row_iter <= amount_of_rows)
 		{
-			if (result[column_iter] == 32)
+			result = get_next_line(fd);
+			while (column_iter < amount_of_columns_with_spaces
+				&& result != NULL)
 			{
+				if (result[column_iter] == 32)
+				{
+					column_iter++;
+				}
+				else
+				{
+					number_index = 0;
+					while (result[column_iter] != ' '
+						&& result[column_iter] != '\0')
+					{
+						number[number_index++] = result[column_iter++];
+					}
+					number[number_index] = '\0';
+					matrix[row_iter][column_iter] = ft_atoi(number);
+				}
 				column_iter++;
 			}
-			else
-			{
-				number_index = 0;
-				while (result[column_iter] != ' '
-					&& result[column_iter] != '\0')
-				{
-					number[number_index++] = result[column_iter++];
-				}
-				number[number_index] = '\0';
-				matrix[row_iter][column_iter] = ft_atoi(number);
-			}
-			column_iter++;
+			column_iter = 0;
+			row_iter++;
+			free(result);
+			(void)matrix;
 		}
-		column_iter = 0;
-		row_iter++;
-		free(result);
-	}
-	while (column_iter < amount_of_columns)
+		close(fd);
+		*/
+}
+int	**allocate_matrix(int amount_of_rows, int amount_of_columns)
+{
+	int	**array;
+	int	row_iter;
+
+	row_iter = 0;
+	array = malloc(amount_of_rows * sizeof(int *));
+	if (!array)
+		return ((int **)1);
+	while (row_iter < amount_of_rows)
 	{
-		ft_printf("%d", matrix[1][column_iter]);
-		column_iter++;
+		array[row_iter] = malloc(amount_of_columns * sizeof(int));
+		if (!array)
+			return ((int **)1);
+		row_iter++;
 	}
-	ft_printf("\n");
-	close(fd);
+	return (array);
+	// free the array and pointers
+	// row_iter = 0;
+	// while (row_iter < amount_of_rows)
+	//{
+	// free(array[row_iter]);
+	// row_iter++;
+	//}
+	// free(array);
 }
 
 void	calculate_matrix(char *name_of_file)

@@ -3,81 +3,96 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pclaus <pclaus@student.s19.be>             +#+  +:+       +#+        */
+/*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/07 16:57:20 by pclaus            #+#    #+#             */
-/*   Updated: 2023/11/07 16:57:24 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/01 10:23:55 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/libft.h"
 
-static int	number_of_substrings(char *s, char c)
+static int	check_separator(char c, char sep)
 {
-	int	in_word;
+	if (c == sep)
+		return (1);
+	if (c == 0)
+		return (1);
+	return (0);
+}
+
+static int	count_strings(char *str, char c)
+{
+	int	i;
 	int	count;
 
-	in_word = 0;
 	count = 0;
-	while (*s)
+	i = 0;
+	while (str[i] != '\0')
 	{
-		if (*s != c && in_word == 0)
-		{
-			in_word = 1;
+		while (str[i] != '\0' && check_separator(str[i], c))
+			i++;
+		if (str[i] != '\0')
 			count++;
-		}
-		else if (*s == c)
-			in_word = 0;
-		s++;
+		while (str[i] != '\0' && !check_separator(str[i], c))
+			i++;
 	}
 	return (count);
 }
 
-static char	*get_word(char *s, char c)
+static int	ft_word_len(char *str, char c)
 {
-	static int	cursor = 0;
-	char		*word;
-	int			len;
-	int			index;
+	int	i;
 
-	len = 0;
-	index = 0;
-	while (s[cursor] == c)
-		cursor++;
-	while ((s[cursor + len] != c) && s[cursor + len])
-		len++;
-	word = malloc(len * sizeof(char) + 1);
-	if (!word)
-		return (NULL);
-	while ((s[cursor] != c) && s[cursor])
-		word[index++] = s[cursor++];
-	word[index] = '\0';
+	i = 0;
+	while (str[i] && !check_separator(str[i], c))
+		i++;
+	return (i);
+}
+
+static char	*ft_word(char *str, char c)
+{
+	int		len_word;
+	int		i;
+	char	*word;
+
+	i = 0;
+	len_word = ft_word_len(str, c);
+	word = (char *)malloc(sizeof(char) * (len_word + 1));
+	while (i < len_word)
+	{
+		word[i] = str[i];
+		i++;
+	}
+	word[i] = '\0';
 	return (word);
 }
 
-char	**ft_split(char *str, char separator)
+char	**ft_split(const char *str, char c)
 {
-	char	**vector_strings;
-	int		number_of_words;
-	int		index;
+	char	**strings;
+	int		i;
 
-	index = 0;
-	number_of_words = number_of_substrings(str, separator);
-	vector_strings = malloc(sizeof(char *) * (number_of_words + 2));
-	if (!vector_strings)
-		return (NULL);
-	while (number_of_words-- >= 0)
+	i = 0;
+	strings = (char **)malloc(sizeof(char *) * (count_strings((char *)str, c)
+				+ 1));
+	if (!strings)
 	{
-		if (index == 0)
-		{
-			vector_strings[index] = malloc(sizeof(char));
-			if (!vector_strings[index])
-				return (NULL);
-			vector_strings[index++][0] = '\0';
-			continue ;
-		}
-		vector_strings[index++] = get_word(str, separator);
+		free(strings);
+		return (NULL);
 	}
-	vector_strings[index] = NULL;
-	return (vector_strings);
+	while (*str != '\0')
+	{
+		while (*str != '\0' && check_separator(*str, c))
+			str++;
+		if (*str != '\0')
+		{
+			strings[i] = ft_word((char *)str, c);
+			i++;
+		}
+		while (*str && !check_separator(*str, c))
+			str++;
+	}
+	strings[i] = NULL;
+	return (strings);
 }

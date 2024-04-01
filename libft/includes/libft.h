@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 19:49:52 by pclaus            #+#    #+#             */
-/*   Updated: 2024/03/29 16:32:38 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/01 10:24:45 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ void				ft_putstr_fd(char *s, int fd);
 char				*ft_substr(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *dst, char const *src);
 char				*ft_strtrim(char const *s1, char *set);
-char				**ft_split(char *str, char separator);
+char				**ft_split(const char *str, char separator);
 char				*ft_itoa(int n);
 char				*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 void				ft_striteri(char *s, void (*f)(unsigned int, char *));
