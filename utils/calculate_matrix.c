@@ -6,63 +6,12 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 17:52:53 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/02 17:56:26 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/02 22:11:34 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-// returns a pointer to the matrix once it has been allocated on the heap?
-void	fill_matrix(int amount_of_rows, int amount_of_columns, char *filename)
-{
-	t_matrix_cell	**matrix;
-	int				fd;
-	char			*result;
-	char			**split_result;
-	char			**split_color;
-	int				iter;
-	int				split_iter;
-
-	split_iter = 0;
-	iter = 0;
-	matrix = allocate_matrix(amount_of_rows, amount_of_columns);
-	fd = open(filename, O_RDONLY);
-	while (iter < amount_of_rows)
-	{
-		result = get_next_line(fd);
-		if (result == NULL)
-		{
-			free(result);
-			return ;
-		}
-		ft_printf("The result is: %s\n", result);
-		split_result = ft_split(result, ' ');
-		print_split(split_result, amount_of_columns);
-		while (split_iter < amount_of_columns)
-		{
-			if (ft_strchr(split_result[split_iter], ','))
-			{
-				split_color = ft_split(split_result[split_iter], ',');
-				matrix[iter][split_iter].color = ft_hex_string_to_int(split_color[1]);
-				ft_printf("Color is: %x\n", matrix[iter][split_iter].color);
-				free(split_color[0]);
-				free(split_color[1]);
-				free(split_color);
-			}
-			else
-				matrix[iter][split_iter].color = -1;
-			matrix[iter][split_iter].value = ft_atoi(split_result[split_iter]);
-			split_iter++;
-		}
-		free(result);
-		free_split(split_result);
-		split_iter = 0;
-		iter++;
-	}
-	print_matrix(matrix, amount_of_rows, amount_of_columns);
-	free_matrix(matrix, amount_of_rows);
-	close(fd);
-}
 t_matrix_cell	**allocate_matrix(int amount_of_rows, int amount_of_columns)
 {
 	t_matrix_cell	**array;
@@ -91,7 +40,7 @@ void	calculate_matrix(char *name_of_file)
 
 	include_path = "./maps/";
 	filename = ft_strjoin(include_path, name_of_file);
-	amount_of_columns = calculate_amount_of_columns(filename);
+	amount_of_columns = calculate_amount_of_columns(filename, 0);
 	amount_of_rows = calculate_amount_of_rows(filename);
 	ft_printf("The amount of rows is: %d\n", amount_of_rows);
 	ft_printf("The amount of columns is: %d\n", amount_of_columns);
@@ -121,15 +70,13 @@ int	calculate_amount_of_rows(char *filename)
 	return (amount_of_rows);
 }
 
-int	calculate_amount_of_columns(char *filename)
+int	calculate_amount_of_columns(char *filename, int iter)
 {
 	int		fd;
 	int		amount_of_columns;
 	char	**split;
 	char	*result;
-	int		iter;
 
-	iter = 0;
 	amount_of_columns = 0;
 	fd = open(filename, O_RDONLY);
 	result = get_next_line(fd);
@@ -150,12 +97,13 @@ int	calculate_amount_of_columns(char *filename)
 	close(fd);
 	return (amount_of_columns);
 }
+
 int	calculate_amount_of_columns_with_spaces(char *filename)
 {
-	int fd;
-	int amount_of_columns;
-	char *temp;
-	char *result;
+	int		fd;
+	int		amount_of_columns;
+	char	*temp;
+	char	*result;
 
 	amount_of_columns = 0;
 	fd = open(filename, O_RDONLY);

@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 10:06:18 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/02 17:27:23 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/02 21:46:25 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_matrix_cell
 
 /*	UTILS	*/
 void			calculate_matrix(char *name_of_file);
-int				calculate_amount_of_columns(char *filename);
+int				calculate_amount_of_columns(char *filename, int iter);
 int				calculate_amount_of_columns_with_spaces(char *filename);
 int				calculate_amount_of_rows(char *filename);
 void			fill_matrix(int amount_of_rows, int amount_of_columns,
@@ -54,3 +54,4 @@ void			print_matrix(t_matrix_cell **matrix, int amount_of_rows,
 					int amount_of_columns);
 void			free_split(char **split_array);
 void			print_split(char **split_array, int amount_of_columns);
+void	split_for_color(t_matrix_cell **matrix, char **split_result, int split_iter, int iter);

@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 09:23:11 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/02 17:41:24 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/02 22:10:39 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,11 @@
 void	print_matrix(t_matrix_cell **matrix, int amount_of_rows,
 		int amount_of_columns)
 {
-	int column_iter = 0;
-	int row_iter = 0;
+	int	column_iter;
+	int	row_iter;
 
+	column_iter = 0;
+	row_iter = 0;
 	while (row_iter < amount_of_rows)
 	{
 		while (column_iter < amount_of_columns)

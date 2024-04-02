@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 08:55:21 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/02 17:55:29 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/02 22:09:34 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 void	free_matrix(t_matrix_cell **matrix, int amount_of_rows)
 {
-	int row_iter = 0;
+	int	row_iter;
 
+	row_iter = 0;
 	while (row_iter < amount_of_rows)
 	{
 		free(matrix[row_iter]);
