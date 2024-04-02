@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 10:06:18 by pclaus            #+#    #+#             */
-/*   Updated: 2024/03/30 21:59:28 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/02 09:27:58 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,3 +43,8 @@ int			calculate_amount_of_rows(char *filename);
 void		fill_matrix(int amount_of_rows, int amount_of_columns,
 				char *filename);
 int			**allocate_matrix(int amount_of_rows, int amount_of_columns);
+void		free_matrix(int **matrix, int amount_of_rows);
+void		print_matrix(int **matrix, int amount_of_rows,
+				int amount_of_columns);
+void		free_split(char **split_array);
+void		print_split(char **split_array);
