@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 10:06:18 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/02 09:27:58 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/02 14:55:57 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,30 +21,36 @@
 
 typedef struct s_img
 {
-	void	*img_ptr;
-	char	*address;
-	int		bits_per_pixel;
-	int		endian;
-	int		line_len;
-}			t_img;
+	void		*img_ptr;
+	char		*address;
+	int			bits_per_pixel;
+	int			endian;
+	int			line_len;
+}				t_img;
 
 typedef struct s_mlx_data
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	t_img	img;
-}			t_mlx_data;
+	void		*mlx_ptr;
+	void		*win_ptr;
+	t_img		img;
+}				t_mlx_data;
+
+typedef struct s_matrix_cell
+{
+	int			value;
+	char		*color;
+}				t_matrix_cell;
 
 /*	UTILS	*/
-void		calculate_matrix(char *name_of_file);
-int			calculate_amount_of_columns(char *filename);
-int			calculate_amount_of_columns_with_spaces(char *filename);
-int			calculate_amount_of_rows(char *filename);
-void		fill_matrix(int amount_of_rows, int amount_of_columns,
-				char *filename);
-int			**allocate_matrix(int amount_of_rows, int amount_of_columns);
-void		free_matrix(int **matrix, int amount_of_rows);
-void		print_matrix(int **matrix, int amount_of_rows,
-				int amount_of_columns);
-void		free_split(char **split_array);
-void		print_split(char **split_array);
+void			calculate_matrix(char *name_of_file);
+int				calculate_amount_of_columns(char *filename);
+int				calculate_amount_of_columns_with_spaces(char *filename);
+int				calculate_amount_of_rows(char *filename);
+void			fill_matrix(int amount_of_rows, int amount_of_columns,
+					char *filename);
+t_matrix_cell	**allocate_matrix(int amount_of_rows, int amount_of_columns);
+void			free_matrix(t_matrix_cell **matrix, int amount_of_rows);
+void			print_matrix(t_matrix_cell **matrix, int amount_of_rows,
+					int amount_of_columns);
+void			free_split(char **split_array);
+void			print_split(char **split_array, int amount_of_columns);

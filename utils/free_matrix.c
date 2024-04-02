@@ -6,13 +6,13 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 08:55:21 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/02 09:02:07 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/02 13:45:52 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	free_matrix(int **matrix, int amount_of_rows)
+void	free_matrix(t_matrix_cell **matrix, int amount_of_rows)
 {
 	int row_iter = 0;
 

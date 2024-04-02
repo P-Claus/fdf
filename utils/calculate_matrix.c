@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 17:52:53 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/02 13:30:10 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/02 15:00:55 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 // returns a pointer to the matrix once it has been allocated on the heap?
 void	fill_matrix(int amount_of_rows, int amount_of_columns, char *filename)
 {
-	int		**matrix;
-	int		fd;
-	char	*result;
-	char	**split_result;
-	int		iter;
-	int		split_iter;
+	t_matrix_cell	**matrix;
+	int				fd;
+	char			*result;
+	char			**split_result;
+	char			**split_color;
+	int				iter;
+	int				split_iter;
 
 	split_iter = 0;
 	iter = 0;
 	matrix = allocate_matrix(amount_of_rows, amount_of_columns);
-	(void)amount_of_columns;
 	fd = open(filename, O_RDONLY);
 	while (iter < amount_of_rows)
 	{
@@ -37,10 +37,18 @@ void	fill_matrix(int amount_of_rows, int amount_of_columns, char *filename)
 		}
 		ft_printf("The result is: %s\n", result);
 		split_result = ft_split(result, ' ');
-		print_split(split_result);
+		print_split(split_result, amount_of_columns);
 		while (split_iter < amount_of_columns)
 		{
-			matrix[iter][split_iter] = ft_atoi(split_result[split_iter]);
+			if (ft_strchr(split_result[split_iter], ','))
+			{
+				split_color = ft_split(split_result[split_iter], ',');
+				matrix[iter][split_iter].color = split_color[1];
+				ft_printf("Color is: %d\n", matrix[iter][split_iter].color);
+			}
+			else
+				matrix[iter][split_iter].color = NULL;
+			matrix[iter][split_iter].value = ft_atoi(split_result[split_iter]);
 			split_iter++;
 		}
 		free(result);
@@ -51,57 +59,21 @@ void	fill_matrix(int amount_of_rows, int amount_of_columns, char *filename)
 	print_matrix(matrix, amount_of_rows, amount_of_columns);
 	free_matrix(matrix, amount_of_rows);
 	close(fd);
-	/*
-		amount_of_columns_with_spaces = calculate_amount_of_columns_with_spaces(filename)
-			- 1;
-		row_iter = -1;
-		column_iter = 0;
-		fd = open(filename, O_RDONLY);
-		while (row_iter <= amount_of_rows)
-		{
-			result = get_next_line(fd);
-			while (column_iter < amount_of_columns_with_spaces
-				&& result != NULL)
-			{
-				if (result[column_iter] == 32)
-				{
-					column_iter++;
-				}
-				else
-				{
-					number_index = 0;
-					while (result[column_iter] != ' '
-						&& result[column_iter] != '\0')
-					{
-						number[number_index++] = result[column_iter++];
-					}
-					number[number_index] = '\0';
-					matrix[row_iter][column_iter] = ft_atoi(number);
-				}
-				column_iter++;
-			}
-			column_iter = 0;
-			row_iter++;
-			free(result);
-			(void)matrix;
-		}
-		close(fd);
-		*/
 }
-int	**allocate_matrix(int amount_of_rows, int amount_of_columns)
+t_matrix_cell	**allocate_matrix(int amount_of_rows, int amount_of_columns)
 {
-	int	**array;
-	int	row_iter;
+	t_matrix_cell	**array;
+	int				row_iter;
 
 	row_iter = 0;
-	array = malloc(amount_of_rows * sizeof(int *));
+	array = malloc(amount_of_rows * sizeof(t_matrix_cell *));
 	if (!array)
-		return ((int **)1);
+		return (NULL);
 	while (row_iter < amount_of_rows)
 	{
-		array[row_iter] = malloc(amount_of_columns * sizeof(int));
+		array[row_iter] = malloc(amount_of_columns * sizeof(t_matrix_cell));
 		if (!array)
-			return ((int **)1);
+			return (NULL);
 		row_iter++;
 	}
 	return (array);
@@ -150,20 +122,28 @@ int	calculate_amount_of_columns(char *filename)
 {
 	int		fd;
 	int		amount_of_columns;
-	char	*temp;
+	char	**split;
 	char	*result;
+	int		iter;
 
+	iter = 0;
 	amount_of_columns = 0;
 	fd = open(filename, O_RDONLY);
 	result = get_next_line(fd);
-	temp = result;
-	while (*result != '\0')
+	split = ft_split(result, ' ');
+	while (split[iter])
 	{
-		if (*result != 32)
-			amount_of_columns++;
-		result++;
+		amount_of_columns++;
+		iter++;
 	}
-	free(temp);
+	iter = 0;
+	while (split[iter])
+	{
+		free(split[iter]);
+		iter++;
+	}
+	free(split);
+	free(result);
 	close(fd);
 	return (amount_of_columns - 1);
 }
