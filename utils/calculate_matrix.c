@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 17:52:53 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/02 15:00:55 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/02 17:08:53 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ int	calculate_amount_of_columns(char *filename)
 	free(split);
 	free(result);
 	close(fd);
-	return (amount_of_columns - 1);
+	return (amount_of_columns);
 }
 int	calculate_amount_of_columns_with_spaces(char *filename)
 {
