@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/10 19:49:52 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/01 10:24:45 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/02 17:38:43 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ void				ft_putstr_color_fd(char *color, char *s, int fd);
 int					ft_printf(const char *format, ...);
 int					ft_str_is_numeric(char *str);
 char				*get_next_line(int fd);
+int					ft_hex_string_to_int(char *hex_string);
 
 // list functions
 t_list				*ft_lstnew(void *content);

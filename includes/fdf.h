@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 10:06:18 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/02 14:55:57 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/02 17:27:23 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_mlx_data
 typedef struct s_matrix_cell
 {
 	int			value;
-	char		*color;
+	int			color;
 }				t_matrix_cell;
 
 /*	UTILS	*/

@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/26 17:52:53 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/02 17:08:53 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/02 17:56:26 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,14 @@ void	fill_matrix(int amount_of_rows, int amount_of_columns, char *filename)
 			if (ft_strchr(split_result[split_iter], ','))
 			{
 				split_color = ft_split(split_result[split_iter], ',');
-				matrix[iter][split_iter].color = split_color[1];
-				ft_printf("Color is: %d\n", matrix[iter][split_iter].color);
+				matrix[iter][split_iter].color = ft_hex_string_to_int(split_color[1]);
+				ft_printf("Color is: %x\n", matrix[iter][split_iter].color);
+				free(split_color[0]);
+				free(split_color[1]);
+				free(split_color);
 			}
 			else
-				matrix[iter][split_iter].color = NULL;
+				matrix[iter][split_iter].color = -1;
 			matrix[iter][split_iter].value = ft_atoi(split_result[split_iter]);
 			split_iter++;
 		}
