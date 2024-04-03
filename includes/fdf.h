@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 10:06:18 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/02 21:46:25 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/03 10:06:35 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,8 @@ void			print_matrix(t_matrix_cell **matrix, int amount_of_rows,
 					int amount_of_columns);
 void			free_split(char **split_array);
 void			print_split(char **split_array, int amount_of_columns);
-void	split_for_color(t_matrix_cell **matrix, char **split_result, int split_iter, int iter);
+void			split_for_color(t_matrix_cell **matrix, char **split_result,
+					int split_iter, int iter);
+
+/*	MLX FUNCTIONs	*/
+void			create_mlx_window(void);
