@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   allocate_matrix.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/25 10:05:51 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/04 18:23:50 by pclaus           ###   ########.fr       */
+/*   Created: 2024/04/04 16:41:29 by pclaus            #+#    #+#             */
+/*   Updated: 2024/04/04 16:41:52 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-#include <string.h>
 
-int	main(int argc, char **argv)
+t_matrix_cell	**allocate_matrix(int amount_of_rows, int amount_of_columns)
 {
-	t_matrix_cell **matrix;
-	if (argc == 2)
+	t_matrix_cell	**array;
+	int				row_iter;
+
+	row_iter = 0;
+	array = malloc(amount_of_rows * sizeof(t_matrix_cell *));
+	if (!array)
+		return (NULL);
+	while (row_iter < amount_of_rows)
 	{
-		matrix = make_matrix(argv[1]);
-		
-		free_matrix(matrix, 11);
+		array[row_iter] = malloc(amount_of_columns * sizeof(t_matrix_cell));
+		if (!array)
+			return (NULL);
+		row_iter++;
 	}
+	return (array);
 }
