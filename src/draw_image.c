@@ -6,53 +6,66 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:55:27 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/03 10:32:09 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/04 22:44:32 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	my_pixel_put(t_img *img, int x, int y, int color)
+void	my_pixel_put(t_img *img, int y, int x, int color)
 {
 	int	offset;
 
 	// calculates the offset by looking for the y-offset and x-offset
-	offset = (img->line_len * y) + (x * (img->bits_per_pixel / 8));
+	offset = (img->line_len * x) + (y * (img->bits_per_pixel / 8));
 	// it casts the newly found pointer (which is the starting point for the image) to unsigned int and give it the color
 	*((unsigned int *)(offset + img->address)) = color;
 }
 
 void	put_data_on_screen(t_mlx_data *data, int color)
 {
-	int	y;
-	int	x;
+	int	row_iter;
+	int	column_iter;
+	int	width_of_map;
+	int	height_of_map;
+	int	distance_between_x_points;
+	int	distance_between_y_points;
 	int	amount_of_columns;
 	int	amount_of_rows;
 
-	amount_of_columns = 18;
-	amount_of_rows = 11;
-	y = 50;
-	x = 50;
-	while (y < HEIGHT - 50)
+	amount_of_columns = 10;
+	amount_of_rows = 5;
+	// need to calculate how many points there need to be per row
+	// amount of columns
+	// calculate how many points per column
+	// amount of rows
+	// calculate where it needs to be
+	width_of_map = WIDTH - 100;
+	distance_between_x_points = width_of_map / amount_of_columns;
+	column_iter = distance_between_x_points;
+	ft_printf("The distance between x points is: %d\n",
+		distance_between_x_points);
+	height_of_map = HEIGHT - 100;
+	distance_between_y_points = height_of_map / amount_of_rows;
+	row_iter = distance_between_y_points;
+	ft_printf("The distance between y points is: %d\n",
+		distance_between_y_points);
+	// width - offset(100) = 600
+	// 600 / amount of columns = space between the columns (=> x coordinate)
+	// height - offset(100) = 600
+	// 600 / amount of rows = space between rows (=> y coordinate?)
+	// calculate the distance between the points based on teh amount of points there need to be on each axis
+	while (row_iter <= height_of_map)
 	{
-		while (x < WIDTH - 50)
+		while (column_iter <= width_of_map)
 		{
-			my_pixel_put(&data->img, x, y, color);
-			x += ((WIDTH - 100) / amount_of_columns);
+			my_pixel_put(&data->img, column_iter, row_iter, color);
+			ft_printf("column_iter is: %d\n", column_iter);
+			column_iter += distance_between_x_points;
 		}
-		x = 50;
-		y += ((HEIGHT - 100) / amount_of_rows);
+		column_iter = distance_between_x_points;
+		row_iter += distance_between_y_points;
 	}
-	/*
-	for (int y = 200; y < (HEIGHT - 200); ++y)
-	{
-		for (int x = 200; x < (WIDTH - 200); ++x)
-		{
-			// this function prints the pixels in the buffer
-			my_pixel_put(&data->img, x, y, color);
-		}
-	}
-	*/
 }
 
 // function to run everytime the ESC key is pressed

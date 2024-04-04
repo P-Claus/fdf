@@ -6,13 +6,14 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 21:36:35 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/04 18:21:48 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/04 19:53:14 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-t_matrix_cell	**fill_matrix(int amount_of_rows, int amount_of_columns, char *filename)
+t_matrix_cell	**fill_matrix(int amount_of_rows, int amount_of_columns,
+		char *filename)
 {
 	t_matrix_cell	**matrix;
 	int				fd;
@@ -34,7 +35,7 @@ t_matrix_cell	**fill_matrix(int amount_of_rows, int amount_of_columns, char *fil
 		free(result);
 		iter++;
 	}
-	print_matrix(matrix, amount_of_rows, amount_of_columns);
+	// print_matrix(matrix, amount_of_rows, amount_of_columns);
 	close(fd);
 	return (matrix);
 }
@@ -71,4 +72,3 @@ void	split_for_color(t_matrix_cell **matrix, char **split_result,
 	free(split_color[1]);
 	free(split_color);
 }
-
