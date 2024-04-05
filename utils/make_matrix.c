@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 18:17:53 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/04 18:20:07 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/05 11:07:36 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,13 @@
 
 t_matrix_cell	**make_matrix(char *name_of_file)
 {
-	char	*filename;
-	char	*include_path;
-	int		amount_of_rows;
-	int		amount_of_columns;
-	t_matrix_cell **matrix = NULL;
+	int				amount_of_rows;
+	int				amount_of_columns;
+	char			*filename;
+	t_matrix_cell	**matrix;
 
-	include_path = "./maps/";
-	filename = ft_strjoin(include_path, name_of_file);
+	matrix = NULL;
+	filename = get_filename(name_of_file);
 	amount_of_columns = calculate_amount_of_columns(filename, 0);
 	amount_of_rows = calculate_amount_of_rows(filename);
 	ft_printf("The amount of rows is: %d\n", amount_of_rows);

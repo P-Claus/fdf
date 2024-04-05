@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 21:36:35 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/04 19:53:14 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/05 14:28:30 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	put_data_into_matrix(t_matrix_cell **matrix, char *result, int iter,
 		if (ft_strchr(split_result[split_iter], ','))
 			split_for_color(matrix, split_result, split_iter, iter);
 		else
-			matrix[iter][split_iter].color = -1;
+			matrix[iter][split_iter].color = 16711935;
 		matrix[iter][split_iter].value = ft_atoi(split_result[split_iter]);
 		split_iter++;
 	}
@@ -67,7 +67,7 @@ void	split_for_color(t_matrix_cell **matrix, char **split_result,
 
 	split_color = ft_split(split_result[split_iter], ',');
 	matrix[iter][split_iter].color = ft_hex_string_to_int(split_color[1]);
-	ft_printf("Color is: %x\n", matrix[iter][split_iter].color);
+	ft_printf("Color is: %d\n", matrix[iter][split_iter].color);
 	free(split_color[0]);
 	free(split_color[1]);
 	free(split_color);

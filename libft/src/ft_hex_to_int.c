@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 17:33:47 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/02 17:48:28 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/05 12:19:59 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,11 @@ int	ft_hex_string_to_int(char *hex_string)
 		c = *hex_string;
 		number *= 16;
 		if (c >= '0' && c <= '9')
-		{
 			number += c - '0';
-		}
 		else if (c >= 'a' && c <= 'f')
-		{
 			number += c - 'a' + 10;
-		}
 		else if (c >= 'A' && c <= 'F')
-		{
 			number += c - 'A' + 10;
-		}
 		hex_string++;
 	}
 	return (number);
