@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:55:27 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/07 15:08:12 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/07 19:23:49 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	put_data_on_screen(t_mlx_data *data, t_matrix_cell **matrix,
 
 	map_dimensions.rows = amount_of_rows;
 	map_dimensions.columns = amount_of_columns;
-	print_matrix(matrix, amount_of_rows, amount_of_columns);
+	// print_matrix(matrix, amount_of_rows, amount_of_columns);
 	map_dimensions.witdh = WIDTH - 100;
 	distance.x = map_dimensions.witdh / amount_of_columns;
 	ft_printf("The distance between x points is: %d\n", distance.x);

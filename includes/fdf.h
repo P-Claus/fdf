@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 10:06:18 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/07 15:02:26 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/07 21:15:52 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../mlx_linux/mlx.h"
 #include <X11/keysym.h>
 #include <fcntl.h>
+#include <math.h>
 #include <stdlib.h>
 
 #define WIDTH 800
@@ -63,6 +64,7 @@ typedef struct s_line_data
 	int							j;
 	t_distance_between_points	distance;
 	int							color;
+	int							z;
 }								t_line_data;
 
 /*	UTILS	*/
@@ -104,9 +106,13 @@ void							draw_horizontal_lines(t_mlx_data *data,
 									t_matrix_cell **matrix,
 									t_map_dimensions map_dimensions,
 									t_distance_between_points distance);
-void							draw_h_line(t_line_data line_data);
+void							draw_h_line(t_line_data line_data,
+									t_map_dimensions s_map_dimensions);
 void							draw_vertical_lines(t_mlx_data *data,
 									t_matrix_cell **matrix,
 									t_map_dimensions map_dimensions,
 									t_distance_between_points distance);
-void							draw_v_line(t_line_data line_data);
+void							draw_v_line(t_line_data line_data,
+									t_map_dimensions map_dimensions);
+void							convert_point_to_isometric(int *x, int *y,
+									int z);

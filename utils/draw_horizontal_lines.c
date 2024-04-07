@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 09:52:54 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/07 15:27:09 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/07 21:22:11 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ void	draw_horizontal_lines(t_mlx_data *data, t_matrix_cell **matrix,
 			line_data.j = j;
 			line_data.distance = distance;
 			line_data.color = matrix[i][j].color;
-			draw_h_line(line_data);
+			line_data.z = matrix[i][j].value;
+			draw_h_line(line_data, map_dimensions);
 			j++;
 		}
 		j = 0;
@@ -39,7 +40,7 @@ void	draw_horizontal_lines(t_mlx_data *data, t_matrix_cell **matrix,
 	}
 }
 
-void	draw_h_line(t_line_data line_data)
+void	draw_h_line(t_line_data line_data, t_map_dimensions map_dimensions)
 {
 	int	dx;
 	int	dy;
@@ -47,6 +48,7 @@ void	draw_h_line(t_line_data line_data)
 	int	x;
 	int	y;
 
+	(void)map_dimensions;
 	dx = line_data.distance.x;
 	dy = 0;
 	p = 2 * dy - dx;
@@ -60,7 +62,7 @@ void	draw_h_line(t_line_data line_data)
 			p = p + 2 * dy;
 		else
 		{
-			x++;
+			y++;
 			p = p + 2 * dy - 2 * dx;
 		}
 	}

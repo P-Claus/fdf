@@ -6,7 +6,7 @@ NAME			= fdf
 
 CC				= cc
 RM				= rm -rf
-CFLAGS			= -Wall -Werror -Wextra -g $(INCLUDES)
+CFLAGS			= -Wall -Werror -Wextra -g -lm $(INCLUDES)
 
 
 LIBFT_DIR		= ./libft
