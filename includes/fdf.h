@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 10:06:18 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/08 15:42:59 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/08 22:22:16 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ typedef struct s_matrix_cell
 
 typedef struct s_map_dimensions
 {
-	int							height;
-	int							witdh;
 	int							rows;
 	int							columns;
 }								t_map_dimensions;
@@ -67,12 +65,14 @@ typedef struct s_line_data
 	int							z;
 }								t_line_data;
 
-
 typedef struct s_pixel
 {
-	int x;
-	int y;
-}	t_pixel;
+	int							x;
+	int							y;
+}								t_pixel;
+
+/*	ERROR CHECKS	*/
+void							validate_input(int argc, char *filename);
 
 /*	UTILS	*/
 t_matrix_cell					**make_matrix(char *name_of_file);
@@ -98,6 +98,8 @@ void							put_data_into_matrix(t_matrix_cell **matrix,
 									int amount_of_columns);
 int								check_amount_of_columns_in_matrix(t_matrix_cell **matrix);
 char							*get_filename(char *name_of_file);
+t_map_dimensions				init_map_dimensions_struct(void);
+t_map_dimensions				get_map_dimensions(char *filename);
 
 /*	MLX FUNCTIONs	*/
 t_mlx_data						create_mlx_window(void);
@@ -121,4 +123,5 @@ void							draw_vertical_lines(t_mlx_data *data,
 									t_distance_between_points distance);
 void							draw_v_line(t_line_data line_data,
 									t_map_dimensions map_dimensions);
-t_pixel	convert_pixel_to_isometric(t_pixel pixel, t_line_data line_data);
+t_pixel							convert_pixel_to_isometric(t_pixel pixel,
+									t_line_data line_data);

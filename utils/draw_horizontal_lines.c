@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 09:52:54 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/08 16:45:48 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/08 19:14:09 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	draw_h_line(t_line_data line_data, t_map_dimensions map_dimensions)
 
 	(void)map_dimensions;
 	dx = line_data.distance.x;
-	dy = 0;
+	dy = line_data.distance.y;
 	p = 2 * dy - dx;
 	x = line_data.j * line_data.distance.x + 50;
 	y = line_data.i * line_data.distance.y + 50;
@@ -58,12 +58,14 @@ void	draw_h_line(t_line_data line_data, t_map_dimensions map_dimensions)
 	{
 		my_pixel_put(&line_data.data->img, x, y, line_data.color);
 		x++;
-		if (p < 0)
-			p = p + 2 * dy;
-		else
+		if (p > 0)
 		{
 			y++;
-			p = p + 2 * dy - 2 * dx;
+			p = p - 2 * dx;
+		}
+		else
+		{
+			p = p + 2 * dy;
 		}
 	}
 }

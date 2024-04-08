@@ -28,9 +28,15 @@ UTILS_DIR 		= utils
 UTILS_FILES		= $(wildcard $(UTILS_DIR)/*.c)
 UTILS_OBJ		= $(addprefix $(OBJ_DIR)/, $(notdir $(UTILS_FILES:.c=.o)))
 
+ERROR_DIR 		= error_checks
+ERROR_FILES		= validate_input.c
+ERROR_OBJ		= $(OBJ_DIR)/validate_input.o
+
+
+
 INCLUDES		= -I ./includes
 
-TOTAL_FILES := $(words $(wildcard $(SOURCES_DIR)/*.c) $(wildcard $(UTILS_DIR)/*.c))
+TOTAL_FILES := $(words $(wildcard $(SOURCES_DIR)/*.c) $(wildcard $(UTILS_DIR)/*.c) $(wildcard $(UTILS_DIR)))
 
 COMPILE_COUNT = 0
 
@@ -60,8 +66,8 @@ $(LIBFT):
 $(MINILIBX):
 	@make -s -C $(MINILIBX_DIR)
 
-$(NAME): $(LIBFT) $(MINILIBX) $(OBJ) $(UTILS_OBJ)  
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(UTILS_OBJ) $(LIBFT) -Lmlx_linux -lmlx_Linux -lXext -lX11 -lm
+$(NAME): $(LIBFT) $(MINILIBX) $(OBJ) $(UTILS_OBJ) $(ERROR_OBJ) 
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(UTILS_OBJ) $(ERROR_OBJ) $(LIBFT) -Lmlx_linux -lmlx_Linux -lXext -lX11 -lm
 	@echo "$(RESET)$(GREEN)Compiled $(NAME)$(RESET_COLOR)"
 
 $(OBJ_DIR)/%.o: $(SOURCES_DIR)/%.c
@@ -71,6 +77,11 @@ $(OBJ_DIR)/%.o: $(SOURCES_DIR)/%.c
 	@echo -n "$(RESET)$(YELLOW)Compiling fdf $$(($(COMPILE_COUNT)*100/$(TOTAL_FILES)))%"
 
 $(OBJ_DIR)/%.o: $(UTILS_DIR)/%.c
+	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(eval COMPILE_COUNT=$(shell echo $$(($(COMPILE_COUNT)+1))))
+	@echo -n "$(RESET)$(YELLOW)Compiling fdf $$(($(COMPILE_COUNT)*100/$(TOTAL_FILES)))%"
+
+$(OBJ_DIR)/%.o: $(ERROR_DIR)/%.c
 	@$(CC) $(CFLAGS) -c $< -o $@
 	@$(eval COMPILE_COUNT=$(shell echo $$(($(COMPILE_COUNT)+1))))
 	@echo -n "$(RESET)$(YELLOW)Compiling fdf $$(($(COMPILE_COUNT)*100/$(TOTAL_FILES)))%"

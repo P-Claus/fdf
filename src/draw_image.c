@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:55:27 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/08 16:37:36 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/08 18:50:02 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	put_data_on_screen(t_mlx_data *data, t_matrix_cell **matrix,
 	distance.y = map_dimensions.height / amount_of_rows;
 	ft_printf("The distance between y points is: %d\n", distance.y);
 	draw_horizontal_lines(data, matrix, map_dimensions, distance);
-	draw_vertical_lines(data, matrix, map_dimensions, distance);
+	// draw_vertical_lines(data, matrix, map_dimensions, distance);
 	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr, data->img.img_ptr, 0,
 		0);
 }

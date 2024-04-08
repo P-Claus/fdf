@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 18:17:53 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/05 11:07:36 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/08 22:22:28 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,4 +78,33 @@ int	calculate_amount_of_columns(char *filename, int iter)
 	free(result);
 	close(fd);
 	return (amount_of_columns);
+}
+
+t_map_dimensions	get_map_dimensions(char *filename)
+{
+	t_map_dimensions map_dimensions;
+
+	map_dimensions = init_map_dimensions_struct();
+	map_dimensions.rows = calculate_amount_of_rows(filename);
+	map_dimensions.columns = calculate_amount_of_columns(filename, 0);
+
+	return (map_dimensions);
+	/*
+	int fd;
+	char *result;
+	char **numbers;
+
+	fd = open_map(filename);
+	while (fd)
+	{
+		result = get_next_line(fd);
+		if (!result)
+			break ;
+		map_dimensions.rows++;
+		if (map_dimensions.columns == 0)
+		{
+			numbers = ft_split(result, ',');
+		}
+	}
+	*/
 }
