@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   convert_point_to_isometric.c                       :+:      :+:    :+:   */
+/*   convert_pixel_to_isometric.c                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/07 17:38:29 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/07 20:50:42 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/08 16:42:48 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-void	convert_point_to_isometric(int *x, int *y, int z)
+t_pixel	convert_pixel_to_isometric(t_pixel pixel, t_line_data line_data)
 {
-	int	original_x;
-	int	original_y;
-
-	original_x = *x;
-	original_y = *y;
-	*x = (original_x - original_y) * cos(0.523599);
-	*y = (original_x + original_y) * sin(0.523599) - z;
+	t_pixel	iso_pixel;
+	
+	iso_pixel.x = (pixel.x - pixel.y);
+	iso_pixel.y = (pixel.x + pixel.y) / 2 - line_data.z;
+	return (iso_pixel);	
 }

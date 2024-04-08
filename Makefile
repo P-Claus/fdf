@@ -6,7 +6,7 @@ NAME			= fdf
 
 CC				= cc
 RM				= rm -rf
-CFLAGS			= -Wall -Werror -Wextra -g -lm $(INCLUDES)
+CFLAGS			= -Wall -Werror -Wextra -g $(INCLUDES)
 
 
 LIBFT_DIR		= ./libft
@@ -61,7 +61,7 @@ $(MINILIBX):
 	@make -s -C $(MINILIBX_DIR)
 
 $(NAME): $(LIBFT) $(MINILIBX) $(OBJ) $(UTILS_OBJ)  
-	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(UTILS_OBJ) $(LIBFT) -Lmlx_linux -lmlx_Linux -lXext -lX11
+	@$(CC) $(CFLAGS) -o $(NAME) $(OBJ) $(UTILS_OBJ) $(LIBFT) -Lmlx_linux -lmlx_Linux -lXext -lX11 -lm
 	@echo "$(RESET)$(GREEN)Compiled $(NAME)$(RESET_COLOR)"
 
 $(OBJ_DIR)/%.o: $(SOURCES_DIR)/%.c

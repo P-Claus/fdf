@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 10:06:18 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/07 21:15:52 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/08 15:42:59 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,13 @@ typedef struct s_line_data
 	int							z;
 }								t_line_data;
 
+
+typedef struct s_pixel
+{
+	int x;
+	int y;
+}	t_pixel;
+
 /*	UTILS	*/
 t_matrix_cell					**make_matrix(char *name_of_file);
 int								calculate_amount_of_columns(char *filename,
@@ -114,5 +121,4 @@ void							draw_vertical_lines(t_mlx_data *data,
 									t_distance_between_points distance);
 void							draw_v_line(t_line_data line_data,
 									t_map_dimensions map_dimensions);
-void							convert_point_to_isometric(int *x, int *y,
-									int z);
+t_pixel	convert_pixel_to_isometric(t_pixel pixel, t_line_data line_data);
