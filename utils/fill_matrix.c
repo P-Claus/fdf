@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 21:36:35 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/05 14:28:30 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/10 15:09:00 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_matrix_cell	**fill_matrix(int amount_of_rows, int amount_of_columns,
 		free(result);
 		iter++;
 	}
-	// print_matrix(matrix, amount_of_rows, amount_of_columns);
+	print_matrix(matrix, amount_of_rows, amount_of_columns);
 	close(fd);
 	return (matrix);
 }

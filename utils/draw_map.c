@@ -6,11 +6,35 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 21:08:05 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/09 21:58:38 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/10 17:04:41 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
+void	my_pixel_put(t_img *img, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = img->address + (y * img->line_len + x * (img->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
+}
+
+static int	get_color(int height)
+{
+	if (height > 100)
+		return (0xFFFFFF);
+	else if (height > 50)
+		return (0x402400);
+	else if (height > 30)
+		return (0x9A5700);
+	else if (height > 10)
+		return (0x009A00);
+	else if (height > 0)
+		return (0x00FF00);
+	else
+		return (0x0000FF);
+}
 
 static void	draw_line(t_mlx_data *window, t_line_data *line_data, int color)
 {
@@ -51,7 +75,7 @@ static void	draw_horizontal_lines(t_matrix_cell **matrix, int ***iso_matrix,
 			line_data.x1 = iso_matrix[0][i][j + 1] + map_data.offset_x;
 			line_data.y1 = iso_matrix[1][i][j + 1] + map_data.offset_y;
 			init_line_data(&line_data);
-			draw_line(window, &line_data, matrix[i][j].color);
+			draw_line(window, &line_data, get_color(matrix[i][j].value));
 			j++;
 		}
 		i++;
@@ -76,7 +100,7 @@ static void	draw_vertical_lines(t_matrix_cell **matrix, int ***iso_matrix,
 			line_data.x1 = iso_matrix[0][i + 1][j] + map_data.offset_x;
 			line_data.y1 = iso_matrix[1][i + 1][j] + map_data.offset_y;
 			init_line_data(&line_data);
-			draw_line(window, &line_data, matrix[i][j].color);
+			draw_line(window, &line_data, get_color(matrix[i][j].value));
 			j++;
 		}
 		i++;

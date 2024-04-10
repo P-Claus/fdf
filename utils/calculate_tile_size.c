@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:51:43 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/09 19:49:29 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/10 17:18:11 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,10 @@ static int	find_min_height(t_map_dimensions map_dimensions,
 				min_height = matrix[i][j].value;
 			j++;
 		}
+		j = 0;
 		i++;
 	}
+	ft_printf("min height: %d\n", min_height);
 	return (min_height);
 }
 
@@ -53,8 +55,10 @@ static int	find_max_height(t_map_dimensions map_dimensions,
 				max_height = matrix[i][j].value;
 			j++;
 		}
+		j = 0;
 		i++;
 	}
+	ft_printf("max height: %d\n", max_height);
 	return (max_height);
 }
 
@@ -67,21 +71,20 @@ t_map_data	calculate_tile_size(t_map_dimensions map_dimensions,
 	int			max_height;
 	int			min_height;
 
-	map_data.scale_of_height = 0.2;
+	map_data.scale_of_height = 0.3;
 	min_height = find_min_height(map_dimensions, matrix);
 	max_height = find_max_height(map_dimensions, matrix);
-	x_length_of_tile = 600 / map_dimensions.columns;
-	y_length_of_tile = 600 / (map_dimensions.rows + max_height
+	x_length_of_tile = (WIDTH - 250) / map_dimensions.columns;
+	y_length_of_tile = (HEIGHT - 250) / (map_dimensions.rows + max_height
 			* map_data.scale_of_height - min_height * map_data.scale_of_height);
 	map_data.tile_size = find_minimum(x_length_of_tile, y_length_of_tile);
 	while (map_data.tile_size < 1)
 	{
 		map_data.scale_of_height /= 2;
-		x_length_of_tile = 600 / map_dimensions.columns;
-		y_length_of_tile = 600 / (map_dimensions.rows + max_height
+		x_length_of_tile = (WIDTH - 250) / map_dimensions.columns;
+		y_length_of_tile = (HEIGHT - 250) / (map_dimensions.rows + max_height
 				* map_data.scale_of_height - min_height
 				* map_data.scale_of_height);
-		map_data.tile_size = find_minimum(x_length_of_tile, y_length_of_tile);
 		map_data.tile_size = find_minimum(x_length_of_tile, y_length_of_tile);
 	}
 	return (map_data);

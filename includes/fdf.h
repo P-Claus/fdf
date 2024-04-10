@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 10:06:18 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/09 21:59:29 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/10 15:46:20 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 #include <math.h>
 #include <stdlib.h>
 
-#define WIDTH 800
-#define HEIGHT 800
+#define WIDTH 1000
+#define HEIGHT 1000
 
 typedef struct s_img
 {
@@ -128,6 +128,8 @@ void					calculate_map_limits(int ***iso_matrix,
 void					init_line_data(t_line_data *line_data);
 void					draw_map(t_matrix_cell **matrix, int ***iso_matrix,
 							t_mlx_data *window, t_map_data map_data);
+t_map_data				calculate_offsets(t_map_limits map_limits,
+							t_map_data map_data);
 
 /*	MLX FUNCTIONs	*/
 t_mlx_data				create_mlx_window(void);

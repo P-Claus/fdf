@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 19:55:11 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/09 20:05:19 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/10 15:38:48 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	calculate_map_limits(int ***iso_matrix, t_map_dimensions map_dimensions,
 			if (iso_matrix[0][i][j] > map_limits->max_x_value)
 				map_limits->max_x_value = iso_matrix[0][i][j];
 			if (iso_matrix[1][i][j] < map_limits->min_y_value)
-				map_limits->min_y_value = iso_matrix[j][i][j];
+				map_limits->min_y_value = iso_matrix[1][i][j];
 			if (iso_matrix[1][i][j] > map_limits->max_y_value)
 				map_limits->max_y_value = iso_matrix[1][i][j];
 			j++;

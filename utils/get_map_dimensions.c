@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 22:29:05 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/08 22:29:33 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/10 15:36:09 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	calculate_amount_of_rows(char *filename)
 	amount_of_rows = 0;
 	fd = open(filename, O_RDONLY);
 	result = get_next_line(fd);
-	while (result != 0)
+	while (result != NULL)
 	{
 		free(result);
 		result = get_next_line(fd);

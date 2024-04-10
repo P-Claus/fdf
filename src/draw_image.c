@@ -6,19 +6,11 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/03 09:55:27 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/09 10:40:41 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/10 17:00:32 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-
-void	my_pixel_put(t_img *img, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = img->address + (y * img->line_len + x * (img->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
-}
 
 void	put_data_on_screen(t_mlx_data *data, t_matrix_cell **matrix,
 		int amount_of_rows, int amount_of_columns)
