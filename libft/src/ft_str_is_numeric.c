@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   validate_input.c                                   :+:      :+:    :+:   */
+/*   ft_str_is_numeric.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/08 21:42:04 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/16 19:29:47 by pclaus           ###   ########.fr       */
+/*   Created: 2024/01/28 15:59:18 by pclaus            #+#    #+#             */
+/*   Updated: 2024/04/16 19:31:19 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/fdf.h"
+#include "../includes/ft_printf.h"
 
-void	validate_input(int argc, char *filename)
+int	ft_str_is_numeric(char *str)
 {
-	if (argc != 2)
+	int	count;
+
+	count = 0;
+	while (str[count] && str[count] != '\0')
 	{
-		ft_putstr_color_fd(YELLOW, "You can only load one map\n", 1);
-		ft_putstr_color_fd(YELLOW, "Format: ./fdf <filename>.fdf\n", 1);
-		exit(0);
+		if ((str[count] >= '0') && (str[count] <= '9'))
+			count++;
+		else
+			return (0);
 	}
-	if (ft_strncmp(filename + ft_strlen(filename) - 4, ".fdf", 4))
-	{
-		ft_putstr_color_fd(RED,
-			"The map you want to load must have the .fdf extension\n", 1);
-		exit(0);
-	}
+	return (1);
 }

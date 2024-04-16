@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_str_is_numeric.c                                :+:      :+:    :+:   */
+/*   find_minimum.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pclaus <pclaus@student.s19.be>             +#+  +:+       +#+        */
+/*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/28 15:59:18 by pclaus            #+#    #+#             */
-/*   Updated: 2024/01/28 15:59:20 by pclaus           ###   ########.fr       */
+/*   Created: 2024/04/09 18:14:30 by pclaus            #+#    #+#             */
+/*   Updated: 2024/04/16 19:34:26 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/ft_printf.h"
+#include "../includes/fdf.h"
 
-int	ft_str_is_numeric(char *str)
+int	find_minimum(int a, int b)
 {
-	int	count;
-
-	count = 0;
-	while (str[count] && str[count] != '\0')
-	{
-		if ((str[count] >= '0') && (str[count] <= '9'))
-			count++;
-		else
-		 return (0);
-	}
-	return (1);
+	if (a < b)
+		return (a);
+	else
+		return (b);
 }

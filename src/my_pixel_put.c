@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_minimum.c                                     :+:      :+:    :+:   */
+/*   my_pixel_put.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/09 18:14:30 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/09 18:15:30 by pclaus           ###   ########.fr       */
+/*   Created: 2024/04/16 19:33:02 by pclaus            #+#    #+#             */
+/*   Updated: 2024/04/16 19:33:41 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int	find_minimum(int a, int b)
+void	my_pixel_put(t_img *img, int x, int y, int color)
 {
-	if (a < b)
-		return (a);
-	else
-		return (b);
+	char	*dst;
+
+	dst = img->address + (y * img->line_len + x * (img->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
 }

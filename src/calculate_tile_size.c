@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 17:51:43 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/10 17:18:11 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/16 19:43:34 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ static int	find_min_height(t_map_dimensions map_dimensions,
 		j = 0;
 		i++;
 	}
-	ft_printf("min height: %d\n", min_height);
 	return (min_height);
 }
 
@@ -58,7 +57,6 @@ static int	find_max_height(t_map_dimensions map_dimensions,
 		j = 0;
 		i++;
 	}
-	ft_printf("max height: %d\n", max_height);
 	return (max_height);
 }
 
