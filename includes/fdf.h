@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 10:06:18 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/10 15:46:20 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/16 18:54:16 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ t_matrix_cell			**fill_matrix(int amount_of_rows, int amount_of_columns,
 t_matrix_cell			**allocate_matrix(int amount_of_rows,
 							int amount_of_columns);
 void					free_matrix(t_matrix_cell **matrix, int amount_of_rows);
+void					free_iso_matrix(int ***iso_matrix, int amount_of_rows);
 void					print_matrix(t_matrix_cell **matrix, int amount_of_rows,
 							int amount_of_columns);
 void					free_split(char **split_array);
@@ -134,7 +135,6 @@ t_map_data				calculate_offsets(t_map_limits map_limits,
 /*	MLX FUNCTIONs	*/
 t_mlx_data				create_mlx_window(void);
 int						handle_escape(int keysym, t_mlx_data *mlx_data);
-
 int						close_mlx_event(t_mlx_data *mlx_data);
 void					put_data_on_screen(t_mlx_data *data,
 							t_matrix_cell **matrix, int amount_of_rows,

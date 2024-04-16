@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 18:17:53 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/08 22:29:42 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/16 18:19:16 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 t_matrix_cell	**make_matrix(char *name_of_file)
 {
-	int amount_of_rows;
-	int amount_of_columns;
-	char *filename;
-	t_matrix_cell **matrix;
+	int				amount_of_rows;
+	int				amount_of_columns;
+	char			*filename;
+	t_matrix_cell	**matrix;
 
 	matrix = NULL;
 	filename = get_filename(name_of_file);
