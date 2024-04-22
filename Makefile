@@ -20,13 +20,13 @@ MINILIBX		= ./mlx_linux/libmlx_Linux.a
 MKDIR			= mkdir -p
 
 SOURCES_DIR		= src
-SOURCES			= $(wildcard $(SOURCES_DIR)/*.c)
-OBJ				= $(addprefix $(OBJ_DIR)/, $(notdir $(SOURCES:.c=.o)))
+SOURCES			= $(SOURCES_DIR)/allocate_matric.c $(SOURCES_DIR)/calculate_map_limits.c $(SOURCES_DIR)/calculate_offsets.c $(SOURCES_DIR)/calculate_tile_size.c $(SOURCES_DIR)/close_mlx_event.c $(SOURCES_DIR)/create_isometric_map.c $(SOURCES_DIR)/create_mlx_window.c $(SOURCES_DIR)/draw_map.c $(SOURCES_DIR)/fill_matrix.c $(SOURCES_DIR)/get_map_dimensions.c $(SOURCES_DIR)/handle_escape.c $(SOURCES_DIR)/init_line_data.c $(SOURCES_DIR)/init_map_dimensions_struct.c $(SOURCES_DIR)/main.c $(SOURCES_DIR)/make_matrix.c $(SOURCES_DIR)/my_pixel_put.c 
+OBJ				= $(OBJ_DIR)/allocate_matrix.o $(OBJ_DIR)/calculate_map_limits.o $(OBJ_DIR)/calculate_offsets.o $(OBJ_DIR)/calculate_tile_size.o $(OBJ_DIR)/close_mlx_event.o $(OBJ_DIR)/create_isometric_map.o $(OBJ_DIR)/create_mlx_window.o $(OBJ_DIR)/draw_map.o $(OBJ_DIR)/fill_matrix.o $(OBJ_DIR)/get_map_dimensions.o $(OBJ_DIR)/handle_escape.o $(OBJ_DIR)/init_line_data.o $(OBJ_DIR)/init_map_dimensions_struct.o $(OBJ_DIR)/main.o $(OBJ_DIR)/make_matrix.o $(OBJ_DIR)/my_pixel_put.o
 OBJ_DIR			= obj
 
 UTILS_DIR 		= utils
-UTILS_FILES		= $(wildcard $(UTILS_DIR)/*.c)
-UTILS_OBJ		= $(addprefix $(OBJ_DIR)/, $(notdir $(UTILS_FILES:.c=.o)))
+UTILS_FILES		= $(UTILS_DIR)/find_minimum.c $(UTILS_DIR)/free_iso_matrix.c $(UTILS_DIR)/free_matrix.c $(UTILS_DIR)/free_split.c $(UTILS_DIR)/get_filename.c $(UTILS_DIR)/open_map.c
+UTILS_OBJ		= $(OBJ_DIR)/find_minimum.o $(OBJ_DIR)/free_iso_matrix.o $(OBJ_DIR)/free_matrix.o $(OBJ_DIR)/free_split.o $(OBJ_DIR)/get_filename.o $(OBJ_DIR)/open_map.o
 
 ERROR_DIR 		= error_checks
 ERROR_FILES		= validate_input.c

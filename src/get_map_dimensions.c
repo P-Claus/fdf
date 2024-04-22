@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 22:29:05 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/10 15:36:09 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/22 22:21:04 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,13 @@ int	calculate_amount_of_rows(char *filename)
 
 	amount_of_rows = 0;
 	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+	{
+		ft_putstr_color_fd(YELLOW,
+			"This map doesn't exist or you don't have the rights\n ", 1);
+		free(filename);
+		exit(1);
+	}
 	result = get_next_line(fd);
 	while (result != NULL)
 	{

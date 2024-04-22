@@ -6,7 +6,7 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 22:11:44 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/08 22:12:55 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/22 21:42:05 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 int	open_map(char *filename)
 {
-	int fd;
+	int	fd;
+
 	fd = open(filename, O_RDONLY);
 	if (fd < 0)
 		return (1);

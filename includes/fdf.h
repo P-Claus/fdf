@@ -6,19 +6,22 @@
 /*   By: pclaus <pclaus@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 10:06:18 by pclaus            #+#    #+#             */
-/*   Updated: 2024/04/16 19:37:15 by pclaus           ###   ########.fr       */
+/*   Updated: 2024/04/22 21:58:16 by pclaus           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../libft/includes/libft.h"
-#include "../mlx_linux/mlx.h"
-#include <X11/keysym.h>
-#include <fcntl.h>
-#include <math.h>
-#include <stdlib.h>
+#ifndef FDF_H
+# define FDF_H
 
-#define WIDTH 1000
-#define HEIGHT 1000
+# include "../libft/includes/libft.h"
+# include "../mlx_linux/mlx.h"
+# include <X11/keysym.h>
+# include <fcntl.h>
+# include <math.h>
+# include <stdlib.h>
+
+# define WIDTH 1000
+# define HEIGHT 1000
 
 typedef struct s_img
 {
@@ -71,6 +74,11 @@ typedef struct s_map_limits
 	int					max_y_value;
 }						t_map_limits;
 
+typedef struct s_map_info
+{
+	t_map_data			data;
+	t_map_limits		limits;
+}						t_map_info;
 ///
 
 typedef struct s_distance_between_points
@@ -100,6 +108,7 @@ typedef struct s_arrays
 
 /*	ERROR CHECKS	*/
 void					validate_input(int argc, char *filename);
+void					check_if_map_exists(int map_height, int map_rows);
 
 /*	SRC	*/
 t_matrix_cell			**make_matrix(char *name_of_file);
@@ -141,3 +150,5 @@ t_mlx_data				create_mlx_window(void);
 int						handle_escape(int keysym, t_mlx_data *mlx_data);
 int						close_mlx_event(t_mlx_data *mlx_data);
 void					my_pixel_put(t_img *img, int x, int y, int color);
+
+#endif
